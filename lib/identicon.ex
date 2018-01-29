@@ -5,11 +5,21 @@ defmodule Identicon do
 
   @doc """
   Main funcion that will drive our identicon generation pipeline execution
-
   """
   def main(input) do
     input
     |> hash_input
+    |> pick_color
+  end
+
+
+  @doc """
+  Extracts the 3 first values from the list of hexadecimal values in the hash passed in the image struct
+  """
+  def pick_color(image) do
+    %Identicon.Image{hex: [r, g, b | _tail]} = image
+
+    [r, g, b]
   end
 
   @doc """
