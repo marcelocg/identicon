@@ -19,6 +19,20 @@ defmodule Identicon do
   def build_grid(%Identicon.Image{hex: hex} = image) do
     hex
     |> Enum.chunk(3)
+    |> mirror_row
+  end
+
+  @doc """
+  Mirrors a 3 element list
+
+  ## Examples
+      iex> Identicon.mirror_row([145, 46, 200])
+      [145, 46, 200, 46, 145]
+
+  """
+  def mirror_row(row) do
+    [first, second | _tail] = row
+    row ++ [second, first]
   end
 
   @doc """
