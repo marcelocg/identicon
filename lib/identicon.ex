@@ -16,10 +16,10 @@ defmodule Identicon do
   @doc """
   Extracts the 3 first values from the list of hexadecimal values in the hash passed in the image struct
   """
-  def pick_color(image) do
-    %Identicon.Image{hex: [r, g, b | _tail]} = image
+  def pick_color(%Identicon.Image{hex: [r, g, b | _tail]} = image) do
 
-    [r, g, b]
+    %Identicon.Image{image | color: {r, g, b}}
+
   end
 
   @doc """
