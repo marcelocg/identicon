@@ -10,8 +10,16 @@ defmodule Identicon do
     input
     |> hash_input
     |> pick_color
+    |> build_grid
   end
 
+  @doc """
+  Creates a grid using the values from then list of hexadecimal values from the hash
+  """
+  def build_grid(%Identicon.Image{hex: hex} = image) do
+    hex
+    |> Enum.chunk(3)
+  end
 
   @doc """
   Extracts the 3 first values from the list of hexadecimal values in the hash passed in the image struct
